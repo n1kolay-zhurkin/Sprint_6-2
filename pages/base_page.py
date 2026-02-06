@@ -35,3 +35,10 @@ class BasePage:
 
     def current_url_contains(self, text):
         return text in self.driver.current_url
+
+    # Новые методы для работы с driver без прямого обращения
+    def get_title(self):
+        return self.driver.title
+
+    def get_current_url(self):
+        return self.driver.current_url

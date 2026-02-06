@@ -1,9 +1,9 @@
-class DzenPage:
-    def __init__(self, driver):
-        self.driver = driver
+from pages.base_page import BasePage
+
+class DzenPage(BasePage):
 
     def get_title(self):
-        return self.driver.title
+        return super().get_title()
 
     def get_url(self):
-        return self.driver.current_url
+        return super().get_current_url()

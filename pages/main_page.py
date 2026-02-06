@@ -1,28 +1,22 @@
 from pages.base_page import BasePage
 from locators.main_page_locators import MainPageLocators
-from selenium.webdriver.support import expected_conditions as EC
-
+from selenium.common.exceptions import TimeoutException
 
 class MainPage(BasePage):
 
     def close_cookie(self):
         try:
             self.click(MainPageLocators.COOKIE_BUTTON)
-        except Exception:
+        except TimeoutException:
             pass
 
     def click_order_top(self):
         self.click(MainPageLocators.ORDER_BUTTON_TOP)
 
     def click_order_bottom(self):
-        button = self.wait.until(
-            EC.presence_of_element_located(MainPageLocators.ORDER_BUTTON_BOTTOM)
-        )
+        button = self.find(MainPageLocators.ORDER_BUTTON_BOTTOM)
         self.scroll_to_element(button)
-        self.wait.until(
-            EC.element_to_be_clickable(MainPageLocators.ORDER_BUTTON_BOTTOM)
-        )
-        button.click()
+        self.click(MainPageLocators.ORDER_BUTTON_BOTTOM)
 
     def click_logo_scooter(self):
         self.click(MainPageLocators.SCOOTER_LOGO)
